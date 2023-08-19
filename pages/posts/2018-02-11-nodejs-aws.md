@@ -1,8 +1,8 @@
 ---
 title: 使用 AWS 部署 Node.js 项目
 description: 这是一篇最近尝试使用 AWS 的 12 个月免费额度以内的 EC2 部署 Node.js 项目的实践
-modified: 2018-02-11
-tags: frontend
+date: 2018-02-11
+tag: frontend
 ---
 
 ### 前提

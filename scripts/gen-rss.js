@@ -5,7 +5,7 @@ const matter = require("gray-matter");
 
 async function generate() {
   const feed = new RSS({
-    title: "Your Name",
+    title: "Blog - OXXD",
     site_url: "https://blog.oxxd.me",
     feed_url: "https://blog.oxxd.me/feed.xml",
   });

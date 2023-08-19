@@ -1,8 +1,8 @@
 ---
 title: 使用新浪云部署 Node.js 项目
 description: 这是一个使用新浪云部署 Node.js 项目的实践，主要目的是为了总结一些自己部署的经验和遇到的坑，希望有参考价值。
-modified: 2018-02-11
-tags: frontend
+date: 2018-02-11
+tag: frontend
 ---
 
 这是一个使用新浪云部署 Node.js 项目的实践，主要目的是为了总结一些自己部署的经验和遇到的坑，希望有参考价值。

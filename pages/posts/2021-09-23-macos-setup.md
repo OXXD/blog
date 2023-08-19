@@ -1,8 +1,8 @@
 ---
 title: 给 Web 开发者看的 macOs 新机设置指南
 description: 安装 Homebrew, Oh My Zsh, nvm, Node.js 以及一些常用软件和基础配置
-modified: 2021-09-23
-tags: frontend
+date: 2021-09-23
+tag: frontend
 ---
 
 以下内容假使读者已具备正确上网技能，如果不能正确上网部分链接会无法打开。

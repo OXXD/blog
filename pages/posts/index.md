@@ -1,7 +1,7 @@
 ---
 type: posts
-title: Random Thoughts
-date: 2020-01-03
+title: Posts
+date: 2023-08-19
 ---
 
-# Random Thoughts
+# Posts

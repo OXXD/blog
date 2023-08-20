@@ -1,0 +1,107 @@
+---
+title: Handlebars 模版预编译与使用
+description: 
+date: 2023-05-03
+tag: 
+---
+
+# Handlebars 模版预编译与使用
+
+服务端渲染中使用模版引擎组织页面常见的操作，[Handlebars](https://handlebarsjs.com/) 是 `Node.js` 生态中流行的模版引擎之一。除了在服务端渲染将模版转换成页面返回浏览器以外，`Handlebars` 也支持将模版预编译为 `Javascript` 脚本文件，在 `HTML` 中引入预编译后的模版，降级为客户端渲染页面。在服务端渲染需要降级为客户端渲染的场景适用，也可以复用已编写好的 `Handlebars` 模版。
+
+本文在[官方文档](https://handlebarsjs.com/installation/precompilation.html)介绍模版预编译之上，额外介绍了如何预编译多个模版。
+
+## 如何预编译模版
+
+### 1. 创建模版文件 example.handlebars
+
+`example.handlebars`
+
+```handlebars
+Handlebars <b>{{doesWhat}}</b> precompiled!
+```
+
+### 2. 安装全局 handlebars （可选）
+
+可以选择全局安装，也可以选择使用 `npx` 执行项目本地安装的 `handlebars` 依赖
+
+```bash
+npm install -g handlebars
+```
+
+### 3. 执行预编译命令
+
+```bash
+# 使用全局安装的
+handlebars example.handlebars -f example.precompiled.js
+# 或者通过 npx
+npx handlebars example.handlebars -f example.precompiled.js
+```
+
+### 4. 在 HTML 中引入 Handlebars Runtime 和预编译后的模版
+
+```html
+<div id="output"></div>
+<!-- 引入 Handlebars Runtime -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
+<!-- 引入预编译后的模版 -->
+<script src="example.precompiled.js"></script>
+<script>
+  // 从全局变量中取出模版，是一个可执行的函数
+  var template = Handlebars.templates.example;
+  // 执行模版函数，传入数据源，将模版函数返回的字符串插入文档
+  document.getElementById('output').innerHTML = template({doesWhat: 'rocks!'})
+</script>
+```
+
+## 如何预编译多个模版
+
+官方文档中并没有提到如何预编译多个模版文件。但是在实际项目中，一个页面可能是由多个模版文件组成的，那么我们如何预编译多个模版文件，并将其引入页面中呢。
+
+`example.handlebars`
+
+```handlebars
+{{> layout/header }}
+Handlebars <b>{{doesWhat}}</b> precompiled!
+{{> layout/footer }}
+```
+
+### 1. 方法一：多次执行预编译命令，并且通过 `>>` 追加到编译后的文件
+
+```bash
+npx handlebars example.handlebars >> example.precompiled.js 
+npx handlebars partials/layout/header.hbs >> example.precompiled.js 
+npx handlebars partials/layout/footer.hbs >> example.precompiled.js 
+```
+
+### 2. 方法二：执行一次命令，传入多个地址（这里更推荐该方法）
+
+```bash
+npx handlebars example.handlebars partials/layout/header.hbs partials/layout/footer.hbs -f example.precompiled.js
+```
+
+### 3. 在 HTML 中引入多个预编译后的模版
+
+当同时存在多个模版时，这里需要使用 [Handlebars.registerPartial](https://handlebarsjs.com/api-reference/runtime.html#handlebars-registerpartial-name-partial) 这一`API`
+
+```html
+div id="output"></div>
+<!-- 引入 Handlebars Runtime -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
+<!-- 引入预编译后的模版 -->
+<script src="example.precompiled.js"></script>
+<script>
+  const template = Handlebars.templates.example;
+  // 注册多个 partials
+  Handlebars.registerPartial({
+      'layout/header': Handlebars.templates['layout.hbs'],
+      'layout/footer': Handlebars.templates['footer.hbs'],
+  })
+  document.getElementById('output').innerHTML = template({doesWhat: 'rocks!'})
+</script>
+```
+
+## 参考链接
+
+- [Precompiling templates](https://handlebarsjs.com/installation/precompilation.html)
+- [The Handlebars runtime API reference](https://handlebarsjs.com/api-reference/runtime.html#handlebars-registerpartial-name-partial)

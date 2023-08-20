@@ -1,0 +1,154 @@
+---
+title: 如何将 Prisma 加入已有数据库中
+description: 
+date: 2023-03-19
+tag: 
+---
+
+# 如何将 Prisma 加入已有数据库中
+
+[上一篇](https://juejin.cn/post/7209472157504028732)介绍了 `Prisma` 的入门使用，本篇介绍如何在已有数据库时，将 Prisma 加入已有数据库中。以 `Postgres` 数据库为例。
+
+## 准备一个 Postgres 数据库
+
+首先我们需要准备一个 `Postgres` 数据库。
+
+这一步可以使用 `Docker` 来安装一个，也可以使用本地安装或者云服务的方式。
+
+`docker-compose.yml` 文件如下，顺便安装一个网页管理数据库工具 `adminer` 方便插入查询数据库等交互操作。
+
+```yml
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+```
+
+使用 `docker compose up -d` 便可以轻松启动。
+
+启动完成后，打开 `http://localhost:8080` 这里我们使用以下 `SQL` 往数据库添加一些示例表。
+
+`seed.sql`
+
+```sql
+CREATE TABLE "public"."User" (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE "public"."Post" (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+  content TEXT,
+  published BOOLEAN NOT NULL DEFAULT false,
+  "authorId" INTEGER NOT NULL,
+  FOREIGN KEY ("authorId") REFERENCES "public"."User"(id)
+);
+
+CREATE TABLE "public"."Profile" (
+  id SERIAL PRIMARY KEY NOT NULL,
+  bio TEXT,
+  "userId" INTEGER UNIQUE NOT NULL,
+  FOREIGN KEY ("userId") REFERENCES "public"."User"(id)
+);
+```
+
+1. 创建一个数据库
+![prisma-postgres-create](/images/minigame/prisma-postgres-create.png)
+2. 导入 SQL 文件并执行
+![prisma-postgres-import](/images/minigame/prisma-postgres-import.png)
+3. 成功创建后的表
+![prisma-postgres-tables](/images/minigame/prisma-postgres-tables.png)
+
+## 在项目中初始化 Prisma 和数据库的连接
+
+1. 安装
+
+```bash
+npm install prisma --save-dev 
+```
+
+2. 初始化
+
+```bash
+npx prisma init
+```
+
+3. 修改 `.env`
+
+将数据库地址通过环境变量提供给 `Prisma`，这样后续使用 `Prisma` 时才知道我们连接使用的是哪一个数据库。
+
+```env
+DATABASE_URL="postgresql://postgres:example@localhost:5432/mydb?schema=public"
+```
+
+4. 通过 `prisma-cli` 生成 `Schema` 文件
+
+接下来我们就可以通过 `Prisma` 的命令来帮我们查询数据库，并且生成数据模型定义文件。执行以下命令即可：
+
+```bash
+npx prisma db pull
+```
+
+![prisma-postgres-schema](/images/minigame/prisma-postgres-schema.png)
+
+## 通过 Prisma Client 查询数据库
+
+有了 `Prisma` 的数据模型定义文件后，我们就可以通过 `Prisma Client` 来进行数据库交互。
+
+1. 安装
+
+```bash
+npm install @prisma/client
+```
+
+2. 通过数据模型定义文件生成 Prisma Client
+
+```bash
+npx prisma generate
+```
+
+3. 与数据库交互
+
+```typescript
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function main() {
+  await prisma.user.create({
+    data: {
+      name: "Alice",
+      email: "alice@prisma.io",
+    },
+  });
+
+  const allUsers = await prisma.user.findMany();
+  console.dir(allUsers, { depth: null });
+}
+```
+
+```bash
+npx ts-node index.ts
+```
+
+## 参考链接
+
+- [Add to existing project](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases-typescript-postgres)
+- [项目源码](https://github.com/OXXD/prisma-postgres-demo)

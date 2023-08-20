@@ -1,0 +1,85 @@
+---
+title: process.env.HOSTNAME 与环境变量文件中设置的值不一致问题排查
+description: 
+date: 2022-10-16
+tag: 
+---
+
+# process.env.HOSTNAME 与环境变量文件中设置的值不一致问题排查
+
+## 问题描述
+
+在 `Node.js` 项目中通过 `.env` 文件 `dotenv` 包来区分环境变量是非常常见的操作，最近在一台 `Windows` 系统新机下的项目中通过该方法获取 `process.env.HOSTNAME` 与 `.env` 文件配置不同，获取的一直是诸如 `PC-20220512JLFP` 之类的系统主机名，但是其他名称的环境变量又能正常获取，于是开始了以下的排查之旅。
+
+`.env` 文件
+
+```properties
+HOSTNAME=domain.com
+```
+
+`app.js` 文件
+```javascript
+require('dotenv').config()
+
+console.log('process.env.HOSTNAME', process.env.HOSTNAME)
+```
+
+输出
+```javascript
+"PC-20220512JLFP"
+```
+
+## 问题排查
+
+### 1. `Node` 版本问题
+
+先排除是不是 `Node.js` 版本问题，通过 `nvm` 切换版本发现在不同版本下获取的值都是一样的，排除该原因
+
+```bash
+nvm install 16.17.1
+nvm use 16.17.1
+
+nvm install 14.20.1
+nvm use 14.20.1
+```
+
+### 2. 直接通过 `Node REPL` 查看 `process.env` 中的值
+
+```bash
+node
+```
+
+![process-env](/images/minigame/process-env.jpg)
+
+可以看到在未加载任何自定义环境变量情况下 `Node.js` 中的 `process.env.HOSTNAME` 已经存在了值并且可能设置为了系统主机名称
+
+这里我们可以怀疑是否 `dotenv` 没获取到这个值或者还是使用了默认环境下的值，于是将 `dotenv` 获取到的环境变量打印出来
+
+```javascript
+const config = require('dotenv').config()
+
+console.log('config', config)
+```
+
+![dotenv](/images/minigame/dotenv.png)
+
+但是从打印结果来看 `dotenv` 获取到了 `.env` 文件中配置的值，这里基本可以确定问题原因应该是和优先级之类的有关
+
+## 问题解决
+
+### 解决方法一：设置 `dotenv` 覆盖已有系统环境变量
+
+通过翻看[文档](https://github.com/motdotla/dotenv#what-happens-to-environment-variables-that-were-already-set)可以得知 `dotenv` 默认行为是不会覆盖已有的系统环境变量的，可以配置修改这一行为
+
+```javascript
+require('dotenv').config({ override: true })
+```
+
+### 解决方法二：修改系统环境变量
+
+`process.env.HOSTNAME` 这个环境变量在一些 `Windows` 系统下会存在是主机名称的默认值，可以修改主机名称去除这一环境变量
+
+## 参考链接
+
+- [Stack Overflow](https://stackoverflow.com/questions/57753800/process-env-variables-not-the-same-value-as-in-env-config)
+- [dotenv 文档](https://github.com/motdotla/dotenv#what-happens-to-environment-variables-that-were-already-set)

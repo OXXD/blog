@@ -1,8 +1,8 @@
 ---
 title: 在微信小程序中通过 npm 引入 ECharts
-description: ""
+description: 
 date: 2021-08-05
-tag: frontend
+tag: Tooling, Projects
 ---
 
 Apache ECharts 官方提供了[在微信小程序中使用Echarts](https://github.com/ecomfe/echarts-for-weixin) 的代码实例和 `ec-canvas` 组件，但是未发布 `npm` 包。

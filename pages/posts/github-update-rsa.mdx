@@ -1,15 +1,15 @@
 ---
 title: 如何解决 Github 3月24日 更新 RSA SSH host key 之后无法克隆项目
-description: 
+description:
 date: 2023-03-26
-tag: 
+tag: Uncategorized
 ---
 
-# 如何解决 Github 3月24日 更新 RSA SSH host key 之后无法克隆项目
+# 如何解决 Github 3 月 24 日 更新 RSA SSH host key 之后无法克隆项目
 
 最近在使用 `SSH` 克隆 `Github` 项目时，发现无法克隆并且会报 `RSA key` 相关的错误。
 
-起初以为是本机的密钥遭到泄漏或者破坏，翻了 [Github Blog](https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/)  之后发现是 `Github` 替换了他们的 `RSA SSH host key` 导致的，只需要本机更新下 `~/.ssh/known_hosts` 中的信息即可。
+起初以为是本机的密钥遭到泄漏或者破坏，翻了 [Github Blog](https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/) 之后发现是 `Github` 替换了他们的 `RSA SSH host key` 导致的，只需要本机更新下 `~/.ssh/known_hosts` 中的信息即可。
 
 本文记录了问题的原因和解决方法。
 
@@ -44,7 +44,7 @@ and the repository exists.
 
 ## 问题原因
 
-[Github Blog - We updated our RSA SSH host key](https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/) 在 2023年3月24日 发布的文章中提到，他们发现 `GitHub.com` 的 `RSA SSH private key` 被提交到了一个公开的仓库，他们很快的做出反应保证用户数据安全，替换了新的密钥。
+[Github Blog - We updated our RSA SSH host key](https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/) 在 2023 年 3 月 24 日 发布的文章中提到，他们发现 `GitHub.com` 的 `RSA SSH private key` 被提交到了一个公开的仓库，他们很快的做出反应保证用户数据安全，替换了新的密钥。
 
 受影响的通过 `SSH` 与 `Github` 交互的用户需要替换 `~/.ssh/known_hosts` 文件中的旧信息。
 

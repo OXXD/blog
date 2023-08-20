@@ -1,8 +1,8 @@
 ---
 title: 使用 Playwright 生成测试代码
-description: 
+description:
 date: 2023-05-14
-tag: 
+tag: Uncategorized
 ---
 
 # 使用 Playwright 生成测试代码
@@ -96,13 +96,18 @@ npx playwright codegen
 生成的代码如下：
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('test', async ({ page }) => {
-  await page.goto('https://react.dev/');
-  await page.getByRole('link', { name: 'Learn', exact: true }).click();
-  await page.getByRole('link', { name: 'Tutorial: Tic-Tac-Toe', exact: true }).click();
-  await page.getByRole('article').getByRole('link', { name: 'Learn React' }).click();
+test("test", async ({ page }) => {
+  await page.goto("https://react.dev/");
+  await page.getByRole("link", { name: "Learn", exact: true }).click();
+  await page
+    .getByRole("link", { name: "Tutorial: Tic-Tac-Toe", exact: true })
+    .click();
+  await page
+    .getByRole("article")
+    .getByRole("link", { name: "Learn React" })
+    .click();
 });
 ```
 
@@ -111,17 +116,22 @@ test('test', async ({ page }) => {
 加上断言之后的代码如下：
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('should navigate', async ({ page }) => {
-  await page.goto('https://react.dev/');
-  await page.getByRole('link', { name: 'Learn', exact: true }).click();
+test("should navigate", async ({ page }) => {
+  await page.goto("https://react.dev/");
+  await page.getByRole("link", { name: "Learn", exact: true }).click();
   // 断言：点击跳转 Learn 之后，地址应该以 learn 结尾
   await expect(page).toHaveURL(/learn$/);
-  await page.getByRole('link', { name: 'Tutorial: Tic-Tac-Toe', exact: true }).click();
+  await page
+    .getByRole("link", { name: "Tutorial: Tic-Tac-Toe", exact: true })
+    .click();
   // 断言：点击跳转 Tutorial: Tic-Tac-Toe 之后，地址应该以 tutorial-tic-tac-toe 结尾
   await expect(page).toHaveURL(/tutorial-tic-tac-toe$/);
-  await page.getByRole('article').getByRole('link', { name: 'Learn React' }).click();
+  await page
+    .getByRole("article")
+    .getByRole("link", { name: "Learn React" })
+    .click();
   // 断言：点击返回 Learn React 之后，地址应该以 learn 结尾
   await expect(page).toHaveURL(/learn$/);
 });

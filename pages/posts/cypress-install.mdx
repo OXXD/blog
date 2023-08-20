@@ -2,7 +2,7 @@
 title: 使用 cypress 自动化测试（一）：安装
 description: 开发完成后都需要对项目进行测试，除了人工根据测试用例测试外，我们也可以使用一些自动化测试工具来完成测试任务，可以解放人工，也可以自动化、重复执行。本文介绍该类工具中 cypress 的安装
 date: 2022-12-18
-tag: 
+tag: Uncategorized
 ---
 
 # 使用 cypress 自动化测试（一）：安装
@@ -53,8 +53,8 @@ Done.
 {
   "scripts": {
     "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
-    "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
-  },
+    "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'"
+  }
 }
 ```
 
@@ -99,7 +99,7 @@ Missing baseUrl in compilerOptions. tsconfig-paths will be skipped
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────
-                                                                                                    
+
   Running:  example.cy.ts                                                                   (1 of 1)
 
 
@@ -127,9 +127,9 @@ Missing baseUrl in compilerOptions. tsconfig-paths will be skipped
 
   (Video)
 
-  -  Started processing:  Compressing to 32 CRF                                                     
+  -  Started processing:  Compressing to 32 CRF
   -  Finished processing: /Users/oxxd/test/vue-project/cypress/videos/example.cy.ts.m    (2 seconds)
-                          p4                                                                        
+                          p4
 
 
 ====================================================================================================
@@ -137,11 +137,11 @@ Missing baseUrl in compilerOptions. tsconfig-paths will be skipped
   (Run Finished)
 
 
-       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
   ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
   │ ✔  example.cy.ts                            680ms        1        1        -        -        - │
   └────────────────────────────────────────────────────────────────────────────────────────────────┘
-    ✔  All specs passed!                        680ms        1        1        -        -        -  
+    ✔  All specs passed!                        680ms        1        1        -        -        -
 ```
 
 执行完后就可以看到 `cypress` 的测试执行情况和测试结果。

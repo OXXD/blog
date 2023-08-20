@@ -1,8 +1,8 @@
 ---
 title: process.env.HOSTNAME 与环境变量文件中设置的值不一致问题排查
-description: 
+description:
 date: 2022-10-16
-tag: 
+tag: Uncategorized
 ---
 
 # process.env.HOSTNAME 与环境变量文件中设置的值不一致问题排查
@@ -18,15 +18,17 @@ HOSTNAME=domain.com
 ```
 
 `app.js` 文件
-```javascript
-require('dotenv').config()
 
-console.log('process.env.HOSTNAME', process.env.HOSTNAME)
+```javascript
+require("dotenv").config();
+
+console.log("process.env.HOSTNAME", process.env.HOSTNAME);
 ```
 
 输出
+
 ```javascript
-"PC-20220512JLFP"
+"PC-20220512JLFP";
 ```
 
 ## 问题排查
@@ -56,9 +58,9 @@ node
 这里我们可以怀疑是否 `dotenv` 没获取到这个值或者还是使用了默认环境下的值，于是将 `dotenv` 获取到的环境变量打印出来
 
 ```javascript
-const config = require('dotenv').config()
+const config = require("dotenv").config();
 
-console.log('config', config)
+console.log("config", config);
 ```
 
 ![dotenv](/images/minigame/dotenv.png)
@@ -72,7 +74,7 @@ console.log('config', config)
 通过翻看[文档](https://github.com/motdotla/dotenv#what-happens-to-environment-variables-that-were-already-set)可以得知 `dotenv` 默认行为是不会覆盖已有的系统环境变量的，可以配置修改这一行为
 
 ```javascript
-require('dotenv').config({ override: true })
+require("dotenv").config({ override: true });
 ```
 
 ### 解决方法二：修改系统环境变量

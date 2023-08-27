@@ -1,0 +1,90 @@
+---
+title: 使用 commitlint 规范和校验 Git 提交
+description:
+date: 2023-08-27
+tag: Tooling
+---
+
+# 使用 commitlint 规范和校验 Git 提交
+
+在团队协作开发的项目中，清晰的 `Git` 提交信息对于代码维护有很大的帮助。规范化的提交信息，
+有利于代码可读性，易于追踪更改，结合自动化工具可以根据信息内容自动生成版本更新差异文档和决定版本升级策略。
+
+本文介绍如何使用 [commitlint](https://commitlint.js.org) 规范和校验 `Git` 提交。
+
+## 1. 安装
+
+```sh
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```
+
+## 2. 配置使用 [Conventional Commits](https://www.conventionalcommits.org/)
+
+在 `.commitlintrc.json` 中添加以下配置
+
+```json filename=".commitlintrc.json"
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+```
+
+也可以通过命令行添加
+
+```sh
+echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js
+```
+
+这里我们配置使用 [Conventional Commits](https://www.conventionalcommits.org/) 的校验规则。
+如果项目有自己的规则也可以设置[自定义规则](https://commitlint.js.org/#/concepts-shareable-config)。
+
+[Conventional Commits](https://www.conventionalcommits.org/) 这一规范强制开发者按照特定的格式编写提交消息。
+
+- 类型（Type）：表示提交的类别，例如 feat（新特性）、fix（修复 bug）、docs（文档更新）等。
+- 作用域（Scope）：表示修改影响的范围，例如某个模块、组件等。
+- 描述（Subject）：简明扼要地描述了提交的目的和内容。
+
+一般按照以下的规则：
+
+```sh
+type(scope?): subject
+body?
+footer?
+```
+
+## 3. 通过 husky 添加 Git 钩子
+
+[husky](https://typicode.github.io/husky/) 这个工具可以方便的为项目添加和管理 `Git` 钩子，
+这里我们添加一个 `commit-msg` 的钩子，在其中使用 `commitlint` 来校验 `Git` 提交信息是否符合规则。
+
+```sh
+npm install husky --save-dev
+npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}'
+```
+
+## 4. 测试
+
+直接测试上一次 `commit` 是否符合规则
+
+```sh
+npx commitlint --from HEAD~1 --to HEAD --verbose
+```
+
+或者直接提交，看是否触发了 `Git` 钩子和 `commitlint` 校验
+
+```sh
+git commit -m "foo: this will fail"
+husky > commit-msg (node v10.1.0)
+No staged files match any of provided globs.
+⧗   input: foo: this will fail
+✖   type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
+
+✖   found 1 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+husky > commit-msg hook failed (add --no-verify to bypass)
+```
+
+## 参考链接
+
+- [commitlint](https://commitlint.js.org/#/guides-local-setup)
+- [Conventional Commits](https://www.conventionalcommits.org/)

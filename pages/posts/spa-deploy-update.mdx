@@ -1,0 +1,164 @@
+---
+title: 如何解决单页应用部署新版后，用户未刷新页面访问懒加载页面无法获取旧版资源文件报错
+description:
+date: 2023-09-03
+tag: Tooling
+---
+
+# 如何解决单页应用部署新版后，用户未刷新页面访问懒加载页面无法获取旧版资源文件报错
+
+目前大部分前端应用都是单页应用（`SPA`）的架构，前端部署后需要用户刷新才能获取新版本，这个问题会影响用户体验。
+如果页面是懒加载的并且用户未访问过时，部署新版后，用户未刷新页面访问懒加载页面会因为无法获取旧版资源文件报错。
+
+网络控制台显示加载页面的资源显示 404，页面报错：
+
+![spa-deploy-update-error](/images/minigame/spa-deploy-update-error.png)
+![网络控制台显示加载页面的资源显示404](/images/minigame/spa-deploy-update-error-network.png)
+
+发生以上这个现象，需要满足三个条件：
+
+1. 站点是 `SPA` 页面，并开启懒加载（目前大部分前端框架都是默认懒加载页面）
+2. 资源地址启用内容 hash。（加载更快启用了强缓存，为了应对资源变更能及时更新内容，会对资源地址的文件名加上内容 hash）
+3. 覆盖式部署，新版本发布后旧的版本会被删除
+
+特别在容器部署的情况的 `SPA` 页面，很容易满足这三个条件。
+
+本文介绍两种方案如何解决这一问题。
+
+## 方案一：保留旧版本资源文件（增量部署、非覆盖式发布）
+
+每次发布新版本时，不删除旧版本资源文件，那么用户即使访问一个懒加载的页面加载未加载过的资源文件时，
+也不会因为获取不到资源文件而报错，还能正常在旧版本中使用。当用户主动刷新或者下次重新进入时，即可访问新版本。
+
+### 实现方案
+
+依据项目不同和部署方式的不同，实现的方案存在多种。比如：
+
+- 部署时直接将所有资源文件上传 `CDN`，每次都增量保存，定期清理较旧和无人访问的版本
+- 灰度部署
+- 静态资源 `CDN` 缓存
+
+### 优缺点
+
+优点：
+
+1. 用户无感知，能保留当前版本操作
+2. 不会出现获取不到资源文件而报错
+3. ...
+
+缺点：
+
+1. 部分用户会停留在旧版本，接口需要兼容处理
+2. 如果使用目前主流的 `Docker` 容器化部署，每次打包部署都是不同镜像，实现增量部署保存静态资源文件需要额外处理
+3. ...
+
+## 方案二：比较版本差异，提醒用户（或自动刷新）
+
+![spa-deploy-update-notification](/images/minigame/spa-deploy-update-notification.png)
+
+### 实现方案
+
+实现的方案大致流程为，部署时记录版本号，用户访问不同页面时请求获取一个当前最新版本信息接口，
+将用户版本与最新版本对比，如果版本不一致，那么就可以根据项目需求，提醒用户刷新获取最新版本，或者自动刷新等其他方式帮助用户替换为最新版本。
+
+具体实现方案可以参考如下：
+
+1. 在部署时将本次部署版本记录在 `html` 和 `public/version` 中
+
+根据框架的不同，这一步实现存在差异，但基本都提供部署完成的钩子，在这个阶段将本次部署版本记录下来即可。
+这个部署版本可以是自动生成的也可以是手动维护的。
+
+```html filename="index.html"
+<script>
+  window.__VERSION__ = "1.0.0";
+</script>
+```
+
+```json filename="version.json"
+{
+  "version": "1.0.0"
+}
+```
+
+2. 当用户访问不同页面时，通过获取接口 `/version.json` 获取最新版本信息和当前用户版本信息进行对比。
+   如果版本信息不一致则提醒用户或者刷新页面。
+
+其他的做法：也可以在每次接口请求头中带上用户版本信息，后端接口中维护版本信息，如果不一致返回自定义状态码通知前端处理提醒用户或者刷新页面。
+
+```javascript filename="version.ts"
+import { notification } from "antd";
+
+const isDev = process.env.NODE_ENV === "development";
+
+/**
+ * 解决部署后用户未刷新页面，获取之前资源文件报错
+ */
+export async function diffVersion() {
+  // 如果是开发模式，不需要执行
+  if (isDev) {
+    return;
+  }
+  const versionFromHtml = window.__VERSION__;
+  // 请求 version.json 中的版本和页面中的版本对比，加上时间戳避免浏览器缓存
+  const { version } = await featch("/version.json?t=" + new Date().getTime());
+  if (version && versionFromHtml !== version) {
+    // 提醒用户
+    notification.warning({
+      message: "提示",
+      description: "已发现新版本，将自动刷新页面。如未自动刷新，请手动刷新！",
+      duration: 3,
+    });
+    // 根据项目需求决定是否需要自动刷新
+    window.location.reload();
+  }
+}
+
+/**
+ * 在切换路由钩子中执行，判断用户版本与最新版本是否存在差异
+ */
+export function onRouteChange() {
+  diffVersion();
+}
+```
+
+每个框架提供的路由钩子都不一致，比如 `umi` 的 `onRouteChange`、`vue-router` 的 `router.beforeEach`。
+
+除了在路由切换中执行版本对比，也可以通过 `WebSocket` 或者后台轮训的方式实现，这个需要根据项目考虑采用哪种方案。
+
+3. 另外需要配置服务器和浏览器不缓存 `html` 文件，这样用户每次访问页面时，
+   都能获取到新版本，并且拿到的页面也不会是缓存后的，避免版本获取出错。
+
+```nginx filename="nginx.conf"
+server {
+    listen 80;
+
+    root /usr/share/nginx/html;
+    include /etc/nginx/mime.types;
+    location / {
+        try_files $uri $uri/ /index.html;
+
+        # 配置页面不缓存htm和htm结尾的文件
+        if ($request_filename ~* ^.*?.(html|htm)$) {
+            add_header Cache-Control "private, no-store, no-cache, must-revalidate, proxy-revalidate";
+        }
+    }
+}
+```
+
+### 优缺点
+
+优点：
+
+1. 用户能保持在最新版本
+2. ...
+
+缺点：
+
+1. 需要额外的请求和部署处理
+2. ...
+
+## 参考链接
+
+- [umi issule - 发版后，页面不刷新会报错，希望能监听这种异常，方便提示用户刷新页面](https://github.com/umijs/umi/issues/10171)
+- [掘金 - 不用刷新！用户无感升级，解决前端部署最后的问题](https://juejin.cn/post/7223196531143131194)
+- [大公司里怎样开发和部署前端代码](https://www.zhihu.com/question/20790576/answer/32602154)

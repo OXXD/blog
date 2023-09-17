@@ -1,0 +1,93 @@
+---
+title: 使用 Headless UI 的 Transition 组件实现简单动画组件
+description:
+date: 2023-09-17
+tag: React
+---
+
+# 使用 Headless UI 的 Transition 组件实现简单动画组件
+
+页面中为一些元素加入适当的动画效果可以对带来非常不错的用户体验，比如滚动到指定位置渐入动画显示、点击按钮从侧边缓慢划入显示侧边栏等动画。
+在 `Web` 开发中，已有不少成熟的动画解决方案，如原生的 `transition`、`animation` 等 `CSS` 属性，`Vue Trasition` 组件, 动画库 `Framer Motion`, `GSAP` 等。
+
+本文介绍如何使用 `Headless UI` 的 [Transition 组件](https://headlessui.com/react/transition)实现简单的动画组件。该组件提供直观简单的 `API` 帮助快速方便的为组件添加动画效果。
+
+## 实现效果
+
+实现效果如下图，以底部划入动画为例，其他动画只需要修改对应属性即可实现。
+
+![headlessui-transition](/images/minigame/headlessui-transition.gif)
+
+## 如何实现
+
+### 1. 添加动画
+
+要实现进入/离开过渡设置动画，只需要在对应的属性上提供每个阶段对应的样式类（结合 `Tailwind CSS` 可以更快速实现）。
+
+- enter: 在元素进入的整个过程中应用。 通常，您可以在此处定义持续时间以及要转换的属性，例如 `transition-opacity`, `duration-75`
+- enterFrom: 输入的起点，例如如果某些内容应该淡入，则 `opacity-0`。
+- enterTo: 输入的结束点，例如淡入后的 `opacity-100`。
+- leave: 在元素离开的整个过程中应用。 通常，您可以在此处定义持续时间以及要转换的属性，例如 `transition-opacity`, `duration-75`
+- leaveFrom: 离开的起点，例如如果某些内容应该淡出，则 `opacity-100`。
+- leaveTo: 离开的终点，例如淡出后的 `opacity-0`。
+
+这里我们是底部移入动画，所以设置 `enterFrom` 为 `translate-y-full`, `enterTo` 为 `translate-y-0`。
+移出时设置和移入相反的方向即可以，这里设置 `leaveFrom` 为 `translate-y-0`, `leaveTo` 为 `translate-y-full`
+
+```tsx filename="Panel.tsx" {3-8}
+function Panel() {
+  <Transition
+    enter="transition ease-in-out duration-700 transform"
+    enterFrom="translate-y-full"
+    enterTo="translate-y-0"
+    leave="transition ease-in-out duration-700 transform"
+    leaveFrom="translate-y-0"
+    leaveTo="translate-y-full"
+  >
+    <div className=" mx-auto w-80 h-80 rounded-t-lg bg-white p-2 pb-0"></div>
+  </Transition>;
+}
+```
+
+### 2. 加上显示隐藏状态控制
+
+加上显示隐藏状态控制也十分简单，只需要控制 `show` 这个属性值即可，当这个值改变，会自动触发动画效果。
+
+```tsx filename="Panel.tsx" {2-10,12}
+function Panel() {
+  const [isShowing, setIsShowing] = useState(false);
+
+  const handleClickToggle = () => {
+    setIsShowing(!isShowing);
+  };
+
+  return (
+    <>
+      <button onClick={handleClickToggle}>Toggle</button>
+      <Transition
+        show={isShowing}
+        className="absolute bottom-0 left-0 right-0"
+        enter="transition ease-in-out duration-700 transform"
+        enterFrom="translate-y-full"
+        enterTo="translate-y-0"
+        leave="transition ease-in-out duration-700 transform"
+        leaveFrom="translate-y-0"
+        leaveTo="translate-y-full"
+      >
+        <div className=" mx-auto w-80 h-80 rounded-t-lg bg-white p-2 pb-0">
+          <div
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg shadow-[0_0_10px_0_rgb(0_0_0/16%)]"
+            onClick={handleClickToggle}
+          >
+            <XMarkIcon className="w-4 h-4 text-black" />
+          </div>
+        </div>
+      </Transition>
+    </>
+  );
+}
+```
+
+## 参考链接
+
+- [Headless UI - Transition](https://headlessui.com/react/transition)

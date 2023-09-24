@@ -1,0 +1,121 @@
+---
+title: 如何实现 React 自定义 Hook
+description:
+date: 2023-09-25
+tag: React
+---
+
+# 如何实现 React 自定义 Hook
+
+`React` 提供了一系列 `Hook` 来帮助我们组织代码逻辑，如 `useState`, `useEffect` 等。
+我们也可以实现一些自定义 `Hook`，将逻辑封装复用，让代码更加可读和更易维护，同时可以在多个组件之间共享相同的逻辑。
+
+最常见的一个场景，比如获取一份接口数据，并且在不同组件间重复使用。本文将介绍如何实现自定义 `Hook`。
+
+## 实现
+
+### 1. 引入我们需要的依赖
+
+```typescript
+import { useRequest } from "ahooks";
+import { useEffect, useState } from "react";
+
+const fetchList = async () => {
+  return fetch("/api/list").then((res) => res.json());
+};
+```
+
+### 2. 定义你自定义 Hook 函数
+
+这个函数可以接受任意数量的参数，但通常情况下，它会返回一个或多个状态变量和一个或多个处理函数。
+
+自定义 `Hook` 需要遵循一些规则：
+
+- 自定义 `Hook` 的名称应该以 "use" 开头。
+- 自定义 `Hook` 内部可以使用其他 `React Hook`。
+- 自定义 `Hook` 应该是纯函数，不应该有副作用。
+
+```typescript
+export default function useSomeData(options: Options) {
+  const { run, data } = useRequest(fetchList, {
+    manual: true,
+  });
+
+  useEffect(() => {
+    if (options.initRun) {
+      run();
+    }
+  }, [options.initRun]);
+
+  return {
+    run,
+    data,
+  };
+}
+```
+
+### 完整代码
+
+```typescript
+import { useRequest } from "ahooks";
+import { useEffect, useState } from "react";
+
+const fetchList = async () => {
+  return fetch("/api/list").then((res) => res.json());
+};
+
+type Options = {
+  /** 自动初始化请求 */
+  initRun?: boolen;
+};
+
+export default function useSomeData(options: Options) {
+  const { run, data } = useRequest(fetchList, {
+    manual: true,
+  });
+
+  useEffect(() => {
+    if (options.initRun) {
+      run();
+    }
+  }, [options.initRun]);
+
+  return {
+    run,
+    data,
+  };
+}
+```
+
+## 使用
+
+可以在任何函数组件中使用你的自定义 `Hook`, 只需导入它并在组件内部调用。
+
+```tsx
+import { useEffect } from "React";
+import useSomeData from "./hooks/useSomeData";
+
+function Component1() {
+  const { data } = useSomeData({
+    initRun: true,
+  });
+
+  return <div>{data}</div>;
+}
+
+function Component2() {
+  const { run, data } = useSomeData({
+    initRun: false,
+  });
+
+  useEffect(() => {
+    run(); // run after some state change
+  }, [someStateChange]);
+
+  return <div>{data}</div>;
+}
+```
+
+## 参考链接
+
+- [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)

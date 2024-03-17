@@ -2,7 +2,7 @@
 title: 使用 FlexSearch 实现本地全文搜索
 description: 
 date: 2024-03-03
-tag: 
+tag: Web
 ---
 
 # 使用 FlexSearch 实现本地全文搜索

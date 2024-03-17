@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Blog - OXXD]]></title>
+        <description><![CDATA[Blog - OXXD]]></description>
+        <link>https://blog.oxxd.me</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sun, 17 Mar 2024 09:13:06 GMT</lastBuildDate>
+        <atom:link href="https://blog.oxxd.me/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[使用 Framer Motion 实现滚动动画]]></title>
+            <link>/posts/react-framer-motion</link>
+            <guid isPermaLink="true">/posts/react-framer-motion</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 10 Mar 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 FlexSearch 实现本地全文搜索]]></title>
+            <link>/posts/flexsearch</link>
+            <guid isPermaLink="true">/posts/flexsearch</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sun, 03 Mar 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[制作一个搜索弹窗组件（Tailwind CSS + shadcn/ui）]]></title>
+            <link>/posts/react-search-dialog</link>
+            <guid isPermaLink="true">/posts/react-search-dialog</guid>
+            <category><![CDATA[React]]></category>
+            <category><![CDATA[Tailwind CSS]]></category>
+            <pubDate>Sun, 25 Feb 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何解决使用]]></title>
+            <link>/posts/scroll-margin</link>
+            <guid isPermaLink="true">/posts/scroll-margin</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sun, 21 Jan 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何实现获取窗口滚动距离的 React Hook]]></title>
+            <link>/posts/react-useWindowScroll</link>
+            <guid isPermaLink="true">/posts/react-useWindowScroll</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 14 Jan 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 react-countup 组件实现数值滚动特效]]></title>
+            <link>/posts/react-countup</link>
+            <guid isPermaLink="true">/posts/react-countup</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 07 Jan 2024 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 React 实现多行输入组件]]></title>
+            <link>/posts/react-area-input</link>
+            <guid isPermaLink="true">/posts/react-area-input</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 17 Dec 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 React 实现 cron 时间选择组件]]></title>
+            <link>/posts/react-cron</link>
+            <guid isPermaLink="true">/posts/react-cron</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Fri, 08 Dec 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何实现权限控制时一级菜单跳转有权限的任意二级菜单]]></title>
+            <link>/posts/react-application-permission-menu-redirect</link>
+            <guid isPermaLink="true">/posts/react-application-permission-menu-redirect</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 03 Dec 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何实现前端页面权限和按钮权限]]></title>
+            <link>/posts/react-application-permission</link>
+            <guid isPermaLink="true">/posts/react-application-permission</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 26 Nov 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 CSS 实现 Logo 阴影特效]]></title>
+            <link>/posts/css-logo-blur</link>
+            <guid isPermaLink="true">/posts/css-logo-blur</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[CSS]]></category>
+            <pubDate>Sun, 19 Nov 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何实现 React Router 的路由鉴权]]></title>
+            <link>/posts/react-router-auth</link>
+            <guid isPermaLink="true">/posts/react-router-auth</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 05 Nov 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 CSS 实现打字机效果]]></title>
+            <link>/posts/css-typewriter-effect</link>
+            <guid isPermaLink="true">/posts/css-typewriter-effect</guid>
+            <category><![CDATA[Web]]></category>
+            <category><![CDATA[CSS]]></category>
+            <pubDate>Sun, 22 Oct 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 crypto-js 进行加密和解密]]></title>
+            <link>/posts/encrypt-with-crypto-js</link>
+            <guid isPermaLink="true">/posts/encrypt-with-crypto-js</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sat, 14 Oct 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何实现 React 自定义 Hook]]></title>
+            <link>/posts/react-custom-hook</link>
+            <guid isPermaLink="true">/posts/react-custom-hook</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Mon, 25 Sep 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 Headless UI 的 Transition 组件实现简单动画组件]]></title>
+            <link>/posts/headlessui-transition</link>
+            <guid isPermaLink="true">/posts/headlessui-transition</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 17 Sep 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何解决单页应用部署新版后，用户未刷新页面访问懒加载页面无法获取旧版资源文件报错]]></title>
+            <link>/posts/spa-deploy-update</link>
+            <guid isPermaLink="true">/posts/spa-deploy-update</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 03 Sep 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 commitlint 规范和校验 Git 提交]]></title>
+            <link>/posts/commitlint</link>
+            <guid isPermaLink="true">/posts/commitlint</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 27 Aug 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何给 Next.js 项目配置代码格式化和校验（ESLint + Prettier + husky）]]></title>
+            <link>/posts/nextjs-linter</link>
+            <guid isPermaLink="true">/posts/nextjs-linter</guid>
+            <category><![CDATA[React]]></category>
+            <category><![CDATA[Next.js]]></category>
+            <pubDate>Sat, 19 Aug 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 patch-package 为 npm 依赖打补丁]]></title>
+            <link>/posts/patch-package</link>
+            <guid isPermaLink="true">/posts/patch-package</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 13 Aug 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 next-themes 两行代码为 Next.js 项目添加暗黑模式]]></title>
+            <link>/posts/next-themes</link>
+            <guid isPermaLink="true">/posts/next-themes</guid>
+            <category><![CDATA[React]]></category>
+            <category><![CDATA[Next.js]]></category>
+            <pubDate>Sun, 06 Aug 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[制作一个响应式头部导航栏（Tailwind CSS + Headless UI）]]></title>
+            <link>/posts/responsive-navbar</link>
+            <guid isPermaLink="true">/posts/responsive-navbar</guid>
+            <category><![CDATA[React]]></category>
+            <category><![CDATA[Tailwind CSS]]></category>
+            <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何 Mock 接口请求]]></title>
+            <link>/posts/msw</link>
+            <guid isPermaLink="true">/posts/msw</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Fri, 21 Jul 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Docker 导出导入镜像]]></title>
+            <link>/posts/docker-save-load</link>
+            <guid isPermaLink="true">/posts/docker-save-load</guid>
+            <category><![CDATA[Docker]]></category>
+            <pubDate>Sun, 16 Jul 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[浏览器中如何获取时区名称]]></title>
+            <link>/posts/timezone</link>
+            <guid isPermaLink="true">/posts/timezone</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sun, 09 Jul 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 Docker 部署 Nginx 时如何设置环境变量]]></title>
+            <link>/posts/docker-nginx</link>
+            <guid isPermaLink="true">/posts/docker-nginx</guid>
+            <category><![CDATA[Docker]]></category>
+            <pubDate>Fri, 30 Jun 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何格式化国家名称]]></title>
+            <description><![CDATA[在为项目国际化时，根据不同语言选择切换对应语言文案都已经有了成熟的解决方案。但是如果遇到需要根据不同语言展示不同国家名称时，需要如何处理呢？本文介绍这一场景的几种处理方案。]]></description>
+            <link>/posts/cldr</link>
+            <guid isPermaLink="true">/posts/cldr</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sat, 24 Jun 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[制作一个兼容移动端的响应式侧边栏]]></title>
+            <link>/posts/responsive-sider</link>
+            <guid isPermaLink="true">/posts/responsive-sider</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Fri, 16 Jun 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[根据 Swagger 文档生成前端网络请求代码和 Typescript 类型申明]]></title>
+            <link>/posts/swagger-codegen</link>
+            <guid isPermaLink="true">/posts/swagger-codegen</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 11 Jun 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[洗牌算法：从数组中随机获取指定数量的元素]]></title>
+            <link>/posts/shuffle</link>
+            <guid isPermaLink="true">/posts/shuffle</guid>
+            <category><![CDATA[JavaScript]]></category>
+            <pubDate>Sun, 28 May 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Docker Init: 自动生成Dockerfile、docker-compose.yaml和.dockerignore 文件]]></title>
+            <description><![CDATA[很多框架都带有脚手架工具，帮助初始化项目，可以快速开始开发。`Docker` 在最近的更新上也引入了 `docker init` 命令，帮忙生成 `Dockerfile`、`.dockerignore`、`docker-compose.yaml`，帮助项目快速接入 `Docker`. 本文简单探索这个工具的使用。]]></description>
+            <link>/posts/docker-init</link>
+            <guid isPermaLink="true">/posts/docker-init</guid>
+            <category><![CDATA[Docker]]></category>
+            <pubDate>Sun, 21 May 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 Playwright 生成测试代码]]></title>
+            <link>/posts/playwright</link>
+            <guid isPermaLink="true">/posts/playwright</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 14 May 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Handlebars 模版预编译与使用]]></title>
+            <link>/posts/handlebars-precompile</link>
+            <guid isPermaLink="true">/posts/handlebars-precompile</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Wed, 03 May 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[项目源码分析 react.dev（二）：Markdown 转换成 HTML]]></title>
+            <link>/posts/react-dev-md</link>
+            <guid isPermaLink="true">/posts/react-dev-md</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 09 Apr 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[项目源码分析 react.dev（一）：目录结构及本地运行]]></title>
+            <link>/posts/react-dev-intro</link>
+            <guid isPermaLink="true">/posts/react-dev-intro</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 02 Apr 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何解决 Github 3月24日 更新 RSA SSH host key 之后无法克隆项目]]></title>
+            <link>/posts/github-update-rsa</link>
+            <guid isPermaLink="true">/posts/github-update-rsa</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 26 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何将 Prisma 加入已有数据库中]]></title>
+            <link>/posts/prisma-postgres</link>
+            <guid isPermaLink="true">/posts/prisma-postgres</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 19 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[类型安全的 ORM 工具 Prisma 入门尝试]]></title>
+            <link>/posts/prisma-quickstart</link>
+            <guid isPermaLink="true">/posts/prisma-quickstart</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 12 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何调试/抓包 Node.js 项目网络请求]]></title>
+            <link>/posts/nodejs-debug-network</link>
+            <guid isPermaLink="true">/posts/nodejs-debug-network</guid>
+            <category><![CDATA[Node.js]]></category>
+            <pubDate>Sun, 12 Feb 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Web 下一代免密登录技术 Passkeys 介绍]]></title>
+            <link>/posts/passkeys</link>
+            <guid isPermaLink="true">/posts/passkeys</guid>
+            <category><![CDATA[Web]]></category>
+            <pubDate>Sun, 05 Feb 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 cypress 自动化测试（一）：安装]]></title>
+            <description><![CDATA[开发完成后都需要对项目进行测试，除了人工根据测试用例测试外，我们也可以使用一些自动化测试工具来完成测试任务，可以解放人工，也可以自动化、重复执行。本文介绍该类工具中 cypress 的安装]]></description>
+            <link>/posts/cypress-install</link>
+            <guid isPermaLink="true">/posts/cypress-install</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 18 Dec 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 zx 编写脚本快速完成任务]]></title>
+            <link>/posts/zx-intro</link>
+            <guid isPermaLink="true">/posts/zx-intro</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 11 Dec 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[快速部署前端项目的几种方式]]></title>
+            <description><![CDATA[本文介绍一些常见的快速部署前端项目的几种方式（或者说是服务），提供部署服务、二级域名、自定义域名、部署预览、CI/CD 等功能，适用于部署简单官网、个人网站、文档站点等不和后端结合的场景。]]></description>
+            <link>/posts/deploy-static-site</link>
+            <guid isPermaLink="true">/posts/deploy-static-site</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sat, 03 Dec 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Web 开发本地环境如何配置 HTTPS]]></title>
+            <link>/posts/localhost-https</link>
+            <guid isPermaLink="true">/posts/localhost-https</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sat, 26 Nov 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何解决 npm 安装依赖报错 ERESOLVE unable to resolve dependency tree]]></title>
+            <link>/posts/npm-unable-to-resolve</link>
+            <guid isPermaLink="true">/posts/npm-unable-to-resolve</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Fri, 18 Nov 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何解决数组排序 Array.sort 遇到 undefined 字段排序无效]]></title>
+            <link>/posts/sort</link>
+            <guid isPermaLink="true">/posts/sort</guid>
+            <category><![CDATA[JavaScript]]></category>
+            <pubDate>Sat, 12 Nov 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[如何在 Nuxt 中获取 Vue Router 的 meta]]></title>
+            <link>/posts/nuxt-route-meta</link>
+            <guid isPermaLink="true">/posts/nuxt-route-meta</guid>
+            <category><![CDATA[Vue]]></category>
+            <category><![CDATA[Nuxt]]></category>
+            <pubDate>Sun, 06 Nov 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[React 通过 CSS Variables 实现暗黑模式]]></title>
+            <link>/posts/react-darkmode</link>
+            <guid isPermaLink="true">/posts/react-darkmode</guid>
+            <category><![CDATA[React]]></category>
+            <pubDate>Sun, 30 Oct 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[process.env.HOSTNAME 与环境变量文件中设置的值不一致问题排查]]></title>
+            <link>/posts/process-env-hostname</link>
+            <guid isPermaLink="true">/posts/process-env-hostname</guid>
+            <category><![CDATA[Uncategorized]]></category>
+            <pubDate>Sun, 16 Oct 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[给 Web 开发者看的 macOs 新机设置指南]]></title>
+            <description><![CDATA[安装 Homebrew, Oh My Zsh, nvm, Node.js 以及一些常用软件和基础配置]]></description>
+            <link>/posts/2021-09-23-macos-setup</link>
+            <guid isPermaLink="true">/posts/2021-09-23-macos-setup</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Thu, 23 Sep 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[在微信小程序中通过 npm 引入 ECharts]]></title>
+            <link>/posts/2021-08-05-echarts-for-weixin-npm</link>
+            <guid isPermaLink="true">/posts/2021-08-05-echarts-for-weixin-npm</guid>
+            <category><![CDATA[Tooling]]></category>
+            <category><![CDATA[Projects]]></category>
+            <pubDate>Thu, 05 Aug 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[前端异常监控 Sentry 的搭建]]></title>
+            <description><![CDATA[项目上线之后，线上问题尤其是线上报错导致的页面无法正常渲染是非常严重的问题。一个异常监控服务可以及时报警通知、提供有效信息和报错堆栈等排查问题。调研了部分异常监控服务以及自研成本之后，决定选择自行搭建 Sentry 这款异常监控服务。Sentry 提供 SaaS 服务也提供自行搭建部署，并且搭建部署也是非常简单方便，在功能使用上面也非常全面易用、支持多平台。]]></description>
+            <link>/posts/2020-08-19-sentry-deploy</link>
+            <guid isPermaLink="true">/posts/2020-08-19-sentry-deploy</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Wed, 19 Aug 2020 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用新浪云部署 Node.js 项目]]></title>
+            <description><![CDATA[这是一个使用新浪云部署 Node.js 项目的实践，主要目的是为了总结一些自己部署的经验和遇到的坑，希望有参考价值。]]></description>
+            <link>/posts/2018-02-10-nodejs-sinacloud</link>
+            <guid isPermaLink="true">/posts/2018-02-10-nodejs-sinacloud</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 11 Feb 2018 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[使用 AWS 部署 Node.js 项目]]></title>
+            <description><![CDATA[这是一篇最近尝试使用 AWS 的 12 个月免费额度以内的 EC2 部署 Node.js 项目的实践]]></description>
+            <link>/posts/2018-02-11-nodejs-aws</link>
+            <guid isPermaLink="true">/posts/2018-02-11-nodejs-aws</guid>
+            <category><![CDATA[Tooling]]></category>
+            <pubDate>Sun, 11 Feb 2018 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

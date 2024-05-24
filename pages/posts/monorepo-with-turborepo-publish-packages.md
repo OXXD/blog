@@ -5,7 +5,7 @@ date: 2024-05-19
 tag: Web
 ---
 
-# 使用 Turborepo 管理的 Monorepo 项目及跨项目时如何共享代码
+# 使用 Turborepo 管理的 Monorepo 项目跨项目时如何共享代码
 
 在[上篇文章]((ttps://juejin.cn/post/7357006184475770916))中介绍了 `Turborepo` 管理 `Monorepo` 项目中可以通过内部库（[Internal Packages](https://turbo.build/repo/docs/handbook/sharing-code/internal-packages)）的方式共享代码。
 
